@@ -6,8 +6,11 @@ public class DeletePostTest extends BaseTest{
 
     @Test
     public void deletePost(){
+        AddPostTest addPostTest = new AddPostTest();
+        String getId = addPostTest.id;
+
         given().
-                pathParam("postId", 21).
+                pathParam("postId", getId).
                 spec(requestSpecification).
         when().
                 delete("{postId}").
