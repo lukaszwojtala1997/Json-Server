@@ -1,3 +1,4 @@
+import com.aventstack.extentreports.ExtentTest;
 import io.restassured.http.ContentType;
 import model.Post;
 import org.hamcrest.Matchers;
@@ -7,10 +8,11 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class VerifyResponseTest {
+public class VerifyResponseTest extends BaseTest{
 
     @Test
     public void getPostContains(){
+        ExtentTest test = extentReports.createTest("Get post contains");
 
         given().log().all().
                 when().get("http://localhost:3000/posts/{postId}", 1)
@@ -19,6 +21,7 @@ public class VerifyResponseTest {
 
     @Test
     public void getPostCheckSpecificField(){
+        ExtentTest test = extentReports.createTest("Get post check specific field");
 
         given().log().all().
                 when().get("http://localhost:3000/posts/{postId}", 1)
@@ -28,6 +31,7 @@ public class VerifyResponseTest {
 
     @Test
     public void getPostObject(){
+        ExtentTest test = extentReports.createTest("Get post object");
 
         Integer id = 1;
 
@@ -43,6 +47,7 @@ public class VerifyResponseTest {
 
     @Test
     public void addPostObject(){
+        ExtentTest test = extentReports.createTest("Add post object");
 
         Post newPost = new Post();
         newPost.setAuthor("Autor obiektowy");

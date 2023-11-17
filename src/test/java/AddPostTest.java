@@ -1,3 +1,4 @@
+import com.aventstack.extentreports.ExtentTest;
 import io.restassured.path.json.JsonPath;
 import model.Post;
 import org.testng.annotations.Test;
@@ -13,6 +14,8 @@ public class AddPostTest extends BaseTest{
 
     @Test
     public void addPost(){
+        ExtentTest test = extentReports.createTest("Add post");
+
         String newPost = "{\n" +
                 "    \"title\": \"Pierwszy post\",\n" +
                 "    \"author\": \"Lukasz\"\n" +
@@ -32,6 +35,8 @@ public class AddPostTest extends BaseTest{
 
     @Test
     public void addPostFromFile(){
+        ExtentTest test = extentReports.createTest("Add post from file");
+
         File newPost = new File("src/test/resources/post.json");
 
         given().
@@ -48,6 +53,7 @@ public class AddPostTest extends BaseTest{
 
         @Test
     public void addPostMap(){
+            ExtentTest test = extentReports.createTest("Add post map");
 
             Map<String, Object> newPost = new HashMap<>();
             newPost.put("title", "tytul z mapy");
@@ -66,6 +72,7 @@ public class AddPostTest extends BaseTest{
 
         @Test
     public void addPostObject(){
+            ExtentTest test = extentReports.createTest("Add post object");
 
             Post newPost = new Post();
             newPost.setAuthor("Autor obiektowy");
@@ -85,6 +92,8 @@ public class AddPostTest extends BaseTest{
 
     @Test
     public void addPostAndGetIdFromResponse(){
+        ExtentTest test = extentReports.createTest("Add post and get id from response");
+
         String newPost = "{\n" +
                 "    \"title\": \"Pierwszy post\",\n" +
                 "    \"author\": \"Lukasz\"\n" +
@@ -105,6 +114,4 @@ public class AddPostTest extends BaseTest{
         JsonPath js = new JsonPath(response);
         id = js.getString("id");
     }
-
-
 }

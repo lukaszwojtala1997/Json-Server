@@ -1,4 +1,4 @@
-import io.restassured.http.ContentType;
+import com.aventstack.extentreports.ExtentTest;
 import model.Post;
 import org.testng.annotations.Test;
 
@@ -11,6 +11,8 @@ public class UpdatePostTest extends BaseTest{
 
     @Test
     public void replacePost(){
+        ExtentTest test = extentReports.createTest("Replace post");
+
         Map<String, Object> newPost = new HashMap<>();
         newPost.put("title", "tytul po aktualizacji");
         newPost.put("author", "Daria");
@@ -20,8 +22,11 @@ public class UpdatePostTest extends BaseTest{
                 when().put("{postId}").
                 then().spec(responseSpecification).extract().body().as(Post.class);
     }
+
     @Test
     public void replacePostObject(){
+        ExtentTest test = extentReports.createTest("Replace post object");
+
         Post newPost = new Post();
         newPost.setAuthor("Tomek");
         newPost.setTitle("Tytul Tomka");
@@ -34,6 +39,8 @@ public class UpdatePostTest extends BaseTest{
 
     @Test
     public void replacePostObjectWithoutTitle(){
+        ExtentTest test = extentReports.createTest("Replace post object without title");
+
         Post newPost = new Post();
         newPost.setAuthor("Tomek");
 
@@ -42,8 +49,11 @@ public class UpdatePostTest extends BaseTest{
                 when().put("{postId}").
                 then().spec(responseSpecification).extract().body().as(Post.class);
     }
+
     @Test
     public void updatePostObject(){
+        ExtentTest test = extentReports.createTest("Update post object");
+
         Post newPost = new Post();
         newPost.setAuthor("Tomek");
 
